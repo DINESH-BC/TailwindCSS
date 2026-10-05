@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Hello There — Welcome</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-[#f7f6f2] font-sans text-slate-900 antialiased">
+	<main class="relative flex min-h-screen items-center justify-center overflow-hidden px-5 py-12">
+		<div aria-hidden="true" class="absolute -left-24 -top-24 h-80 w-80 rounded-full bg-amber-200/50 blur-3xl"></div>
+		<div aria-hidden="true" class="absolute -bottom-32 -right-20 h-96 w-96 rounded-full bg-teal-200/50 blur-3xl"></div>
+
+		<section class="relative w-full max-w-3xl overflow-hidden rounded-[2rem] border border-white/80 bg-white/85 shadow-[0_24px_80px_-30px_rgba(15,23,42,0.25)] backdrop-blur-xl">
+			<div class="grid md:grid-cols-[1.1fr_0.9fr]">
+				<div class="p-8 sm:p-12">
+					<a href="#home" class="inline-flex items-center gap-2 text-sm font-bold tracking-wide text-slate-800">
+						<span class="grid h-9 w-9 place-items-center rounded-xl bg-slate-900 text-lg text-white">h</span>
+						hello again
+					</a>
+
+					<div class="mt-12">
+						<p class="mb-4 inline-flex items-center gap-2 rounded-full bg-amber-50 px-3.5 py-2 text-xs font-semibold uppercase tracking-wider text-amber-800">
+							<span aria-hidden="true">✦</span> Your little corner of the internet
+						</p>
+						<h1 id="welcome-title" class="text-4xl font-bold leading-tight tracking-tight sm:text-5xl">A warm welcome<br />to <span class="text-teal-700">you.</span></h1>
+						<p id="welcome-copy" class="mt-5 max-w-md leading-7 text-slate-600">We’re so glad you’re here. Add your name and we’ll make this hello a little more personal.</p>
+
+						<form id="welcome-form" class="mt-8" novalidate>
+							<label for="name" class="mb-2 block text-sm font-semibold text-slate-700">What should we call you?</label>
+							<div class="flex flex-col gap-3 sm:flex-row">
+								<input id="name" name="name" type="text" autocomplete="given-name" placeholder="Your name" class="min-w-0 flex-1 rounded-xl border border-slate-200 bg-white px-4 py-3.5 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-teal-600 focus:ring-4 focus:ring-teal-600/10" />
+								<button type="submit" class="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-5 py-3.5 font-semibold text-white transition hover:bg-teal-800 focus:outline-none focus:ring-4 focus:ring-teal-700/25">
+									Say hello <span aria-hidden="true">→</span>
+								</button>
+							</div>
+							<p id="form-message" class="mt-2 min-h-5 text-sm text-rose-600" aria-live="polite"></p>
+						</form>
+					</div>
+
+					<p class="mt-8 text-xs text-slate-400">Take a breath. You’re right where you need to be.</p>
+				</div>
+
+				<aside class="relative flex min-h-64 flex-col justify-between overflow-hidden bg-slate-900 p-8 text-white sm:p-10 md:min-h-full">
+					<div aria-hidden="true" class="absolute -right-12 -top-12 h-56 w-56 rounded-full border border-white/10"></div>
+					<div aria-hidden="true" class="absolute -right-2 top-0 h-56 w-56 rounded-full border border-white/10"></div>
+					<div class="relative">
+						<span class="text-sm font-medium text-teal-200">A note for today</span>
+						<p class="mt-8 text-3xl font-semibold leading-snug tracking-tight">“The best things begin with a hello.”</p>
+					</div>
+					<div class="relative mt-12 flex items-center justify-between">
+						<span class="text-sm text-slate-300">Make yourself at home.</span>
+						<span class="grid h-12 w-12 place-items-center rounded-full bg-white/10 text-2xl" aria-hidden="true">☀</span>
+					</div>
+				</aside>
+			</div>
+		</section>
+	</main>
+
+	<script>
+		const form = document.getElementById('welcome-form');
+		const nameInput = document.getElementById('name');
+		const message = document.getElementById('form-message');
+		const title = document.getElementById('welcome-title');
+		const copy = document.getElementById('welcome-copy');
+
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+			const name = nameInput.value.trim();
+			if (!name) {
+				message.textContent = 'Pop your name in first and we’ll say hello!';
+				nameInput.focus();
+				return;
+			}
+			message.textContent = '';
+			title.textContent = `Welcome, ${name}!`;
+			copy.textContent = `It’s lovely to have you here, ${name}. Get comfortable and make today your own.`;
+			nameInput.value = '';
+		});
+	</script>
+</body>
+</html>
